@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       visualDensity: VisualDensity.adaptivePlatformDensity,
     );
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: '.Ast App',
       theme: themeData,
       home: Homepage(),
     );
@@ -37,7 +37,7 @@ class _HomepageState extends State<Homepage> {
           ),
         ),
         body: Padding(
-          child:TextInputWidget(),
+          //child:,
           padding: EdgeInsets.all(20),
           )
           );
