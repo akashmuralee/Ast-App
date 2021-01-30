@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'addMember.dart';
 
 void main() {
   runApp(MyApp());
@@ -30,66 +31,78 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Image(
+          image: AssetImage('assets/logoplainwt.png'),
+          height: 55,
+        ),
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              MainIcons(
+                  Icons.person_add, "Add Member"),
+              MainIcons(Icons.group, "View Members"),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              MainIcons(Icons.playlist_add, "Assign Task"),
+              MainIcons(Icons.list_alt, "View Tasks"),
+            ],
+          ),
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.chat),
+      ),
+    );
+  }
+}
+
+class ViewMembers extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
         appBar: AppBar(
           title: Image(
             image: AssetImage('assets/logoplainwt.png'),
             height: 55,
           ),
         ),
-       
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Column(
-                  children:[
-                      IconButton(
-                        iconSize: 100.0,
-                  icon:Icon(Icons.person_add) , onPressed: null),
-                  Text("Add Member")
-                  ]
-                ),
-               Column(
-                  children:[
-                      IconButton(
-                        iconSize: 100.0,
-                  icon:Icon(Icons.group) , onPressed: null),
-                  Text("View Members")
-                  ]
-                )
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Column(
-                  children:[
-                      IconButton(
-                        iconSize: 100.00,
-                  icon:Icon(Icons.playlist_add) , onPressed: null),
-                  Text("Assign Task")
-                  ]
-                ),
-                Column(
-                  children:[
-                      IconButton(
-                        iconSize: 100.0,
-                  icon:Icon(Icons.list_alt) , onPressed: null),
-                  Text("View Tasks")
-                  ]
-                )
-              ],
-            ),
-            
-          ],
-        ),
-
-        floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.chat),
-
-        ),
-          );
+        body: Text("View Members"));
   }
 }
+
+
+
+class MainIcons extends StatelessWidget {
+  Color _color;
+  IconData _icons;
+  String _iconText;
+  Function _dest;
+  MainIcons(this._icons, this._iconText);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(children: [
+      IconButton(
+          iconSize: 100.0,
+          icon: Icon(_icons, color: Colors.pink),
+          splashColor: Colors.deepPurple,
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => AddMember()),
+            );
+          }),
+      Text(_iconText)
+    ]);
+  }
+}
+
+
