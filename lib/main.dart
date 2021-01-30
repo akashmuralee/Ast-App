@@ -36,40 +36,60 @@ class _HomepageState extends State<Homepage> {
             height: 55,
           ),
         ),
-        body: Padding(
-          //child:,
-          padding: EdgeInsets.all(20),
-          )
+       
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Column(
+                  children:[
+                      IconButton(
+                        iconSize: 100.0,
+                  icon:Icon(Icons.person_add) , onPressed: null),
+                  Text("Add Member")
+                  ]
+                ),
+               Column(
+                  children:[
+                      IconButton(
+                        iconSize: 100.0,
+                  icon:Icon(Icons.group) , onPressed: null),
+                  Text("View Members")
+                  ]
+                )
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Column(
+                  children:[
+                      IconButton(
+                        iconSize: 100.00,
+                  icon:Icon(Icons.playlist_add) , onPressed: null),
+                  Text("Assign Task")
+                  ]
+                ),
+                Column(
+                  children:[
+                      IconButton(
+                        iconSize: 100.0,
+                  icon:Icon(Icons.list_alt) , onPressed: null),
+                  Text("View Tasks")
+                  ]
+                )
+              ],
+            ),
+            
+          ],
+        ),
+
+        floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.chat),
+
+        ),
           );
-  }
-}
-
-
-
-class TextInputWidget extends StatefulWidget {
-  @override
-  _TextInputWidgetState createState() => _TextInputWidgetState();
-}
-
-class _TextInputWidgetState extends State<TextInputWidget> {
-  final controller = TextEditingController();
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        TextField(
-          controller: this.controller,
-          decoration: InputDecoration(
-              //prefixIcon: Icon(Icons.add_comment),
-              suffixIcon: IconButton(
-                icon: Icon(Icons.send_rounded),
-                color: Colors.black,
-                onPressed: () => {}
-              ),
-              labelText: "Enter Your Name"),
-        )
-      ],
-    );
   }
 }
