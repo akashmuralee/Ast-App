@@ -1,130 +1,86 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-class AddMember extends StatefulWidget {
+class AssignTask extends StatefulWidget {
   @override
-  _AddMemberState createState() => _AddMemberState();
+  _AssignTaskState createState() => _AssignTaskState();
 }
 
-class _AddMemberState extends State<AddMember> {
-  String _name;
-  String _designation;
-  String _email;
-  String _phoneNumber;
-  String _ghURL;
-  String _liURL;
+class _AssignTaskState extends State<AssignTask> {
+  String _taskName;
+  String _description;
+  String _assignTo;
+  String _deadline;
+
   String smessage = " ";
   var _controllerName = TextEditingController();
   var _controllerDes = TextEditingController();
-  var _controllerEmail = TextEditingController();
-  var _controllerPhone = TextEditingController();
-  var _controllerGURL = TextEditingController();
-  var _controllerLURL = TextEditingController();
+  var _controllerassignTo = TextEditingController();
+  var _controllerDeadline = TextEditingController();
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   Widget _buildName() {
     return TextFormField(
       controller: _controllerName,
-      decoration: InputDecoration(labelText: "Name"),
+      decoration: InputDecoration(labelText: "Task Title"),
       validator: (String value) {
         if (value.isEmpty) {
-          return "Name is Required";
+          return "Title is Required";
         }
         return null;
       },
       onSaved: (String value) {
-        _name = value;
+        _taskName = value;
       },
     );
   }
 
-  Widget _buildDesignation() {
+  Widget _buildDescription() {
     return TextFormField(
       controller: _controllerDes,
-      decoration: InputDecoration(labelText: "Designation"),
+      decoration: InputDecoration(labelText: "Description"),
       validator: (String value) {
         if (value.isEmpty) {
-          return "Designation is Required";
+          return "Description is Required";
         }
         return null;
       },
       onSaved: (String value) {
-        _designation = value;
+        _description = value;
       },
     );
   }
 
-  Widget _buildEmail() {
+  Widget _buildAssignTo() {
     return TextFormField(
-      controller: _controllerEmail,
-      decoration: InputDecoration(labelText: "Email"),
+      controller: _controllerassignTo,
+      decoration: InputDecoration(labelText: "Assign To: "),
       validator: (String value) {
         if (value.isEmpty) {
-          return "Email is Required";
+          return "Please specify a person.";
         }
-
-        if (!RegExp(
-                r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
-            .hasMatch(value)) {
-          return "Invalid Email";
-        }
-
         return null;
       },
       onSaved: (String value) {
-        _email = value;
+        _assignTo = value;
       },
     );
   }
 
-  Widget _buildPhoneNumber() {
+  Widget _buildDeadline() {
     return TextFormField(
-      controller: _controllerPhone,
-      decoration: InputDecoration(labelText: "Phone Number"),
+      controller: _controllerDeadline,
+      decoration: InputDecoration(labelText: "Deadline"),
+      keyboardType: TextInputType.datetime,
       validator: (String value) {
         if (value.isEmpty) {
-          return "Phone Number is Required";
-        }
-        if (!RegExp(r"[0-9]{10}").hasMatch(value)) {
-          return "Invalid Phone Number";
+          return "Please specify a date.";
         }
         return null;
       },
       onSaved: (String value) {
-        _phoneNumber = value;
-      },
-    );
-  }
-
-  Widget _builGithubURL() {
-    return TextFormField(
-      controller: _controllerGURL,
-      decoration: InputDecoration(labelText: "GitHub Profile Link"),
-      validator: (String value) {
-        if (value.isEmpty) {
-          return "URL is Required";
-        }
-        return null;
-      },
-      onSaved: (String value) {
-        _ghURL = value;
-      },
-    );
-  }
-
-  Widget _builLinkedInURL() {
-    return TextFormField(
-      controller: _controllerLURL,
-      decoration: InputDecoration(labelText: "LinkedIn Profile Link"),
-      validator: (String value) {
-        if (value.isEmpty) {
-          return "URL is Required";
-        }
-        return null;
-      },
-      onSaved: (String value) {
-        _liURL = value;
+        _deadline = value;
       },
     );
   }
@@ -174,11 +130,9 @@ class _AddMemberState extends State<AddMember> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   _buildName(),
-                  _buildDesignation(),
-                  _buildEmail(),
-                  _buildPhoneNumber(),
-                  _builGithubURL(),
-                  _builLinkedInURL(),
+                  _buildDescription(),
+                  _buildAssignTo(),
+                  _buildDeadline(),
                   SizedBox(height: 50),
                   RaisedButton(
                     child: Text('Submit',
@@ -192,19 +146,16 @@ class _AddMemberState extends State<AddMember> {
                       _formKey.currentState.save();
                       _controllerName.clear();
                       _controllerDes.clear();
-                      _controllerEmail.clear();
-                      _controllerPhone.clear();
-                      _controllerGURL.clear();
-                      _controllerLURL.clear();
+                      _controllerassignTo.clear();
+                      _controllerDeadline.clear();
 
-                      smessage = "Details of " + _name + " Submitted ! ";
-                      
+                      smessage = 'Task "' + _taskName + '" assigned to "'+_assignTo+'" ! ';
                       _showMyDialog();
-                      print(_name);
-                      print(_email);
-                      print(_phoneNumber);
 
-                      
+                      print(_taskName);
+                      print(_deadline);
+
+                     
                     },
                   ),
                   Text(smessage,

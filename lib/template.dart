@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-class AddMember extends StatefulWidget {
+class ClassName extends StatefulWidget {
   @override
-  _AddMemberState createState() => _AddMemberState();
+  _ClassNameState createState() => _ClassNameState();
 }
 
-class _AddMemberState extends State<AddMember> {
+class _ClassNameState extends State<ClassName> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
