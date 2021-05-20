@@ -7,7 +7,6 @@ This app enables a .Ast member to:
 * Assign Tasks to Members
 * View All Tasks
 
-[Complete Development Process: Youtube Playlist (Not a Tutorial)](https://youtube.com/playlist?list=PL1uRKR3S03od8YcO2olTqE6xKd2Ywl1lF)
 
 ## Status
 27-01-2021: Just started learning. Created an app bar and learned to import assets.  
